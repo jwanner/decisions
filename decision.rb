@@ -1,20 +1,37 @@
+
 #weights of variables
 cost_weight = 0.3
 time_weight = 0.3
 conv_weight = 0.2
 prod_weight = 0.2
 
-plane_cost = 58.10 * cost_weight  # DCA => BOS
-plane_travel = 81 + 90 + 45 # Flight time + checkin time + arrival at airport to final destination
+#input cost
+p_cost = 58.10
+t_cost = 79
+b_cost = 49
+
+#input time
+# Flight time + checkin time + arrival at airport to final destination
+	flight_time = 81
+	checkin_time = 90
+	arrival_time = 45
+p_time = flight_time + checkin_time + arrival_time
+p_transfers =2
+
+plane_cost = p_cost * cost_weight  # DCA => BOS
+plane_travel = p_time
 plane_time = plane_travel * time_weight  
-plane_transfers = 2 # Transfers departing and arriving at airport 
+plane_transfers = p_transfers # Transfers departing and arriving at airport 
 plane_conv = 10 - plane_transfers * conv_weight
 plane_prod = 10 * prod_weight
 
 plane_result = plane_time+plane_cost-plane_conv-plane_prod
 
-train_cost = 79 * cost_weight # WAS => BOS 
-train_travel = 470 + 15 + 15 # Travel time + station arrivals and departures 
+#train time
+t_travel = 470
+
+train_cost = t_cost * cost_weight # WAS => BOS 
+train_travel = t_travel + 15 + 15 # Travel time + station arrivals and departures 
 train_time = train_travel * time_weight
 train_transfers = 2
 train_conv = 10-train_transfers * conv_weight
@@ -35,7 +52,7 @@ car_prod = 0 * prod_weight
 
 car_result = car_time+car_cost-car_conv-car_prod
 
-bus_cost = 49 * cost_weight # WAS => BOS 1 transfer enroute 
+bus_cost = b_cost * cost_weight # WAS => BOS 1 transfer enroute 
 bus_travel= 560 + 10 + 10 # travel time + station arrivals and departures 
 bus_time =  bus_travel * time_weight
 bus_transfers = 3
@@ -78,10 +95,6 @@ if (bus_result < plane_result)
 	end
 end 
 end 
-puts plane_result
-puts train_result
-puts car_result
-puts bus_result
 
 
 
