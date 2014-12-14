@@ -15,6 +15,7 @@ b_cost = 49
 	flight_time = 81
 	checkin_time = 90
 	arrival_time = 45
+
 p_time = flight_time + checkin_time + arrival_time
 p_transfers =2
 
@@ -39,23 +40,26 @@ train_prod = 10 * prod_weight
 
 train_result = train_time+train_cost-train_conv-train_prod
 
-gas_price = 3.5  #gas $3.5/gallon
+gas_price = 3000.5  #gas $3.5/gallon
 mileage = 441 # miles
 MPG = 30 # MPG
 
+c_time= 480
 
 car_travel_cost = mileage/MPG * gas_price 
 car_cost = car_travel_cost * cost_weight
-car_time = 480 * time_weight # 7 hours 
+car_time = c_time * time_weight # 7 hours 
 car_conv = 10 * conv_weight # no transfers
 car_prod = 0 * prod_weight
 
 car_result = car_time+car_cost-car_conv-car_prod
 
+b_time = 560 + 10 + 10
+b_transfers = 3
 bus_cost = b_cost * cost_weight # WAS => BOS 1 transfer enroute 
-bus_travel= 560 + 10 + 10 # travel time + station arrivals and departures 
+bus_travel= b_time # travel time + station arrivals and departures 
 bus_time =  bus_travel * time_weight
-bus_transfers = 3
+bus_transfers = b_transfers
 bus_conv = 5- bus_transfers * conv_weight
 bus_prod = 5 * prod_weight
 
