@@ -1,4 +1,4 @@
-
+//saving js work to debug html javascript page
 cost_weight = 0.3
 time_weight = 0.3
 conv_weight = 0.2
